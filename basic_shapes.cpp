@@ -7,7 +7,7 @@
 using std::string;
 using std::stringstream;
 
-Circle::Circle(const double &radius){
+Circle::Circle(const double &radius): _radius(radius){
 
 }
 

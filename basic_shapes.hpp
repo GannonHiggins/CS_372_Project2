@@ -4,6 +4,8 @@
 #include "shape.hpp"
 #include <fstream>
 
+//Child classes
+
 class Circle: public Shape{
 private:
 double _radius;
