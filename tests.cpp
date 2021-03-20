@@ -1,5 +1,5 @@
-#include "shape.hpp"
-#include "basic_shapes.hpp"
+#include "header/shape.hpp"
+#include "header/basic_shapes.hpp"
 #include "catch.hpp"
 #include <fstream>
 #include <sstream>
