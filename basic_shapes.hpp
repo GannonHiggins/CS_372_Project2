@@ -1,31 +1,30 @@
-#ifndef BASIC_SHAPES_HPP
-#define BASIC_SHAPES_HPP
+#pragma once
+//#ifndef BASIC_SHAPES_HPP
+//#define BASIC_SHAPES_HPP
 
 #include "shape.hpp"
 #include <fstream>
 
 //Child classes
-
-class Circle: public Shape{
+class Circle : public Shape
+{
 private:
-double _radius;
+    double _radius;
 
-public: 
+public:
+    Circle(const double &radius);
 
-Circle(const double &radius);
-
-void draw(std::ostream &file) const;
-
+    void draw(std::ostream &file) const;
 };
 
-class Polygon: public Shape {
+class Polygon : public Shape
+{
 private:
-    int _numSides; 
+    int _numSides;
     double _sideLength;
-public: 
 
-Polygon(const int &numSides, const double &SideLength );
-void draw(std::ostream &file) const;
+public:
+    Polygon(const int numSides, const double sideLength);
 
-}
-#endif
+    void draw(std::ostream file) const;
+};
