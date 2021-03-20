@@ -12,6 +12,8 @@ Circle::Circle(const double &radius): _radius(radius){
 
     // if (abs(radius) > this.getWidth())
     //     printf("ERROR --> (Circle) invalid radius: %d\n", radius);
+    setHeight(radius*2);
+    setWidth(radius*2);
 }
 
 void Circle::draw(std::ostream &file) const{

@@ -2,7 +2,7 @@
 //#ifndef BASIC_SHAPES_HPP
 //#define BASIC_SHAPES_HPP
 
-#include "header/shape.hpp"
+#include "shape.hpp"
 #include <fstream>
 
 //Child classes
