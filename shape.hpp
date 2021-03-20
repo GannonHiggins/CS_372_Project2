@@ -3,6 +3,7 @@
 #include <fstream>
 
 
+//Base Class
 class Shape{
 private:
 double _height = 0;
