@@ -12,9 +12,8 @@ private:
     double _radius;
 
 public:
-    Circle(const double &radius);
-
-    void draw(std::ostream &file) const;
+    Circle(prims::position pos, double radius);
+    void draw();
 };
 
 class Polygon : public Shape
@@ -24,7 +23,6 @@ private:
     double _sideLength;
 
 public:
-    Polygon(const int numSides, const double sideLength);
-
-    void draw(std::ostream file) const;
+    Polygon::Polygon(prims::position pos, int numof_sides, double lengthof_sides);
+    void draw();
 };

@@ -3,52 +3,38 @@
 #include <string>
 #include <cmath>
 
-#define M_PI 3.14159265358979323846
+static prims::bounding_box computeBoundingBox(double numof_sides, double lengthof_sides);
 
-using std::string;
-using std::stringstream;
+Circle::Circle(prims::position pos, double radius)
+    : _radius(radius), Shape(pos, {radius, radius}) { }
 
-Circle::Circle(const double &radius): _radius(radius){
-
-    // if (abs(radius) > this.getWidth())
-    //     printf("ERROR --> (Circle) invalid radius: %d\n", radius);
-    setHeight(radius*2);
-    setWidth(radius*2);
+void Circle::draw()
+{
+    
 }
 
-void Circle::draw(std::ostream &file) const{
-    stringstream out;
+Polygon::Polygon(prims::position pos, int numof_sides, double lengthof_sides)
+    : _numSides(numof_sides), _sideLength(lengthof_sides), Shape(pos, computeBoundingBox(numof_sides, lengthof_sides)) { }
 
-    out <<"gsave\nnewpath\n" 
-        <<getHeight()/2.0 << " " << getWidth() / 2.0 << " " << _radius
-        <<" 0 360 arc \nstroke\ngrestore\n";
+static prims::bounding_box computeBoundingBox(double numof_sides, double lengthof_sides)
+{
+    prims::bounding_box new_bb;
 
-        file << out.rdbuf();
-}
-
-Polygon::Polygon(const int numSides, const double sideLength): _numSides(numSides), _sideLength(sideLength){
-    double height = .0;
-    double width  = .0;
-
-    if (numSides % 2 == 1){
-        height = sideLength * (1 + cos(M_PI / numSides)) / (2 * sin(M_PI / numSides));
-        width = (sideLength * sin(M_PI * (numSides - 1) / 2 * numSides)) / (sin(M_PI / numSides));
+    if ((int)numof_sides % 2 == 1)
+    {
+        new_bb.height   = lengthof_sides * (1 + cos(prims::PI / numof_sides)) / (2 * sin(prims::PI / numof_sides));
+        new_bb.width    = (lengthof_sides * sin(prims::PI * (numof_sides - 1) / 2 * numof_sides)) / (sin(prims::PI / numof_sides));
     }
-    else if (numSides % 4 == 0){
-        height = sideLength * (cos(M_PI / numSides)) / (sin(M_PI / numSides));
-        width = (sideLength * cos(M_PI / numSides)) / (sin(M_PI / numSides));
+    else if ((int)numof_sides % 4 == 0)
+    {
+        new_bb.height   = lengthof_sides * (cos(prims::PI / numof_sides)) / (sin(prims::PI / numof_sides));
+        new_bb.width    = (lengthof_sides * cos(prims::PI / numof_sides)) / (sin(prims::PI / numof_sides));
     }
-    else{
-        height = sideLength * (cos(M_PI / numSides)) / (sin(M_PI / numSides));
-        width = sideLength / (sin(M_PI / numSides));
+    else
+    {
+        new_bb.height   = lengthof_sides * (cos(prims::PI / numof_sides)) / (sin(prims::PI / numof_sides));
+        new_bb.width    = lengthof_sides / (sin(prims::PI / numof_sides));
     }
 
-    setHeight(height);
-    setWidth(width);
-}
-
-void Polygon::draw(std::ostream file) const{
-   stringstream out;
-
-
+    return new_bb;
 }

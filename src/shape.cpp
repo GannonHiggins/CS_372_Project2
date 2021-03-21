@@ -1,18 +1,24 @@
 #include "shape.hpp"
 
+Shape::Shape(prims::position pos, prims::bounding_box bounding_box)
+    : _pos(pos), _bounding_box(bounding_box) { }
 
-double Shape::getHeight() const { return _boundingBox.height; }
+prims::position Shape::getPosition()
+{
+    return this->_pos;
+}
 
-double Shape::getWidth() const { return _boundingBox.width; }
+prims::bounding_box Shape::getBoundingBox()
+{
+    return this->_bounding_box;
+}
 
-void Shape::setHeight(const double height) { _boundingBox.height = height; }
+void Shape::setPosition(prims::position new_pos)
+{
+    this->_pos = new_pos;
+}
 
-void Shape::setWidth(const double width) { _boundingBox.width = width; }
-
-double Shape::getPosX() const { return _position.x; }
-
-double Shape::getPosY() const { return _position.y; }
-
-void Shape::setPosX(const double posX) { _position.x = posX; }
-
-void Shape::setPosY(const double posY) { _position.y = posY; }
+void Shape::setBoundingBox(prims::bounding_box new_bb)
+{
+    this->_bounding_box = new_bb;
+}
