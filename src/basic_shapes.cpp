@@ -1,4 +1,4 @@
-#include "header/basic_shapes.hpp"
+#include "../header/basic_shapes.hpp"
 #include <sstream>
 #include <string>
 #include <cmath>
@@ -19,14 +19,13 @@ Circle::Circle(const double &radius): _radius(radius){
 void Circle::draw(std::ostream &file) const{
     stringstream out;
 
-    out <<"gsave\nnewpath\n" 
-        <<getHeight()/2.0 << " " << getWidth() / 2.0 << " " << _radius
-        <<" 0 360 arc \nstroke\ngrestore\n";
+    out <<"gsave\nnewpath\n"
+        << "0 0 " << _radius << " 0 360 arc \nstroke\ngrestore\n";
 
-        file << out.rdbuf();
+    file << out.rdbuf();
 }
 
-Polygon::Polygon(const int numSides, const double sideLength): _numSides(numSides), _sideLength(sideLength){
+Poly::Poly(const int &numSides, const double &sideLength): _numSides(numSides), _sideLength(sideLength){
     double height = .0;
     double width  = .0;
 
@@ -47,8 +46,15 @@ Polygon::Polygon(const int numSides, const double sideLength): _numSides(numSide
     setWidth(width);
 }
 
-void Polygon::draw(std::ostream file) const{
+void Poly::draw(std::ostream &file) const{
    stringstream out;
 
+    out << "gsave\nnewpath\n"
+         << "/S " << _numSides << " def /H " << getHeight() / 2 << " \ndef"
+         << " /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate "
+            "-90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 "
+            "S div add def } repeat\n"
+         << "closepath\nstroke\ngrestore\n";
 
+file << out.rdbuf();
 }

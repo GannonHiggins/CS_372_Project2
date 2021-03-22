@@ -6,25 +6,19 @@
 class Shape
 {
 private:
-
-    struct boundingBox
-    {
-        double height  = .0;
-        double width   = .0;
-    } _boundingBox;    
-
-    struct position
-    {
-        double x = .0;
-        double y = .0;
-    } _position;
+    double _height  = .0;
+    double _width   = .0;
+     
+    double _x = .0;
+    double _y = .0;
+  
     
 
 public:
     double getHeight() const;
     double getWidth() const;
-    void setHeight(const double height);
-    void setWidth(const double width);
+    void setHeight(const double &height);
+    void setWidth(const double &width);
 
     double getPosX() const;
     double getPosY() const;

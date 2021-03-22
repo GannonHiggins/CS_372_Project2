@@ -17,14 +17,14 @@ public:
     void draw(std::ostream &file) const;
 };
 
-class Polygon : public Shape
+class Poly : public Shape
 {
 private:
     int _numSides;
     double _sideLength;
 
 public:
-    Polygon(const int numSides, const double sideLength);
+    Poly(const int &numSides, const double &sideLength);
 
-    void draw(std::ostream file) const;
+    void draw(std::ostream &file) const;
 };
