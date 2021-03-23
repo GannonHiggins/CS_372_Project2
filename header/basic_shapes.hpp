@@ -2,8 +2,9 @@
 //#ifndef BASIC_SHAPES_HPP
 //#define BASIC_SHAPES_HPP
 
-#include "shape.hpp"
 #include <fstream>
+
+#include "shape.hpp"
 
 //Child classes
 class Circle : public Shape
@@ -13,7 +14,7 @@ private:
 
 public:
     Circle(prims::position pos, double radius);
-    void draw();
+    void draw(std::ostream &file);
 };
 
 class Polygon : public Shape
@@ -24,5 +25,5 @@ private:
 
 public:
     Polygon::Polygon(prims::position pos, int numof_sides, double lengthof_sides);
-    void draw();
+    void draw(std::ostream &file);
 };

@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <fstream>
+
 #include "primatives.hpp"
 
 //Base Class
