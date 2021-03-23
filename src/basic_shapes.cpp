@@ -14,13 +14,24 @@ Circle::Circle(const double &radius): _radius(radius){
     //     printf("ERROR --> (Circle) invalid radius: %d\n", radius);
     setHeight(radius*2);
     setWidth(radius*2);
+    setPosY(.0);
+    setPosX(.0);
+}
+
+
+Circle::Circle(const double &posX, const double &posY, const double &radius): _x(posX), _y(posY), _radius(radius){
+ setHeight(radius*2);
+ setWidth(radius*2);
+ setPosX(_x);
+ setPosY(_y);
 }
 
 void Circle::draw(std::ostream &file) const{
     stringstream out;
-
+    int x = (int)round(_x); 
+    int y = (int)round(_y); 
     out <<"gsave\nnewpath\n"
-        << "0 0 " << _radius << " 0 360 arc \nstroke\ngrestore\n";
+        << x << " "<< y << " " << _radius << " 0 360 arc \nstroke\ngrestore\n";
 
     file << out.rdbuf();
 }
@@ -35,7 +46,7 @@ Poly::Poly(const int &numSides, const double &sideLength): _numSides(numSides), 
     }
     else if (numSides % 4 == 0){
         height = sideLength * (cos(M_PI / numSides)) / (sin(M_PI / numSides));
-        width = (sideLength * cos(M_PI / numSides)) / (sin(M_PI / numSides));
+        width = (sideLength * (cos(M_PI / numSides)) / (sin(M_PI / numSides)));
     }
     else{
         height = sideLength * (cos(M_PI / numSides)) / (sin(M_PI / numSides));
@@ -47,6 +58,7 @@ Poly::Poly(const int &numSides, const double &sideLength): _numSides(numSides), 
 }
 
 void Poly::draw(std::ostream &file) const{
+   
    stringstream out;
 
     out << "gsave\nnewpath\n"
@@ -56,5 +68,12 @@ void Poly::draw(std::ostream &file) const{
             "S div add def } repeat\n"
          << "closepath\nstroke\ngrestore\n";
 
-file << out.rdbuf();
+    file << out.rdbuf();
+}
+
+
+void Spacer::draw(std::ostream &file)const{
+    stringstream out;
+    out<<"";
+    file << out.rdbuf();
 }

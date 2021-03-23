@@ -12,7 +12,6 @@ private:
     double _x = .0;
     double _y = .0;
   
-    
 
 public:
     double getHeight() const;
@@ -22,8 +21,8 @@ public:
 
     double getPosX() const;
     double getPosY() const;
-    void setPosX(const double posX);
-    void setPosY(const double posY);
+    void setPosX(const double &posX);
+    void setPosY(const double &posY);
 
     virtual void draw(std::ostream &file) const = 0;
     virtual ~Shape() = default;

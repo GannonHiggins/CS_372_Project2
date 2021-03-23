@@ -13,6 +13,6 @@ double Shape::getPosX() const { return _x; }
 
 double Shape::getPosY() const { return _y; }
 
-void Shape::setPosX(const double posX) { _x = posX; }
+void Shape::setPosX(const double &posX) { _x = posX; }
 
-void Shape::setPosY(const double posY) { _y = posY; }
+void Shape::setPosY(const double &posY) { _y = posY; }
