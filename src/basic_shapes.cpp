@@ -28,10 +28,8 @@ Circle::Circle(const double &posX, const double &posY, const double &radius): _x
 
 void Circle::draw(std::ostream &file) const{
     stringstream out;
-    int x = (int)round(_x); 
-    int y = (int)round(_y); 
     out <<"gsave\nnewpath\n"
-        << x << " "<< y << " " << _radius << " 0 360 arc \nstroke\ngrestore\n";
+        << _x << " "<< _y << " " << _radius << " 0 360 arc \nstroke\ngrestore\n";
 
     file << out.rdbuf();
 }
