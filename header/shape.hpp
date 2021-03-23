@@ -1,29 +1,24 @@
 #pragma once 
 
 #include <fstream>
+#include "primatives.hpp"
 
 //Base Class
 class Shape
 {
 private:
-    double _height  = .0;
-    double _width   = .0;
-     
-    double _x = .0;
-    double _y = .0;
-  
+    prims::position _pos;
+    prims::bounding_box _bounding_box;
 
 public:
-    double getHeight() const;
-    double getWidth() const;
-    void setHeight(const double &height);
-    void setWidth(const double &width);
+    prims::position get_position();
+    prims::bounding_box get_boundingBox();
 
-    double getPosX() const;
-    double getPosY() const;
-    void setPosX(const double &posX);
-    void setPosY(const double &posY);
+    void set_position(prims::position new_pos);
+    void set_boundingBox(prims::bounding_box new_bb);
 
-    virtual void draw(std::ostream &file) const = 0;
+    Shape(prims::position pos, prims::bounding_box bb);
+
+    virtual void draw(std::ostream &file) = 0;
     virtual ~Shape() = default;
 };

@@ -1,6 +1,4 @@
 #pragma once
-//#ifndef BASIC_SHAPES_HPP
-//#define BASIC_SHAPES_HPP
 
 #include "shape.hpp"
 #include <fstream>
@@ -10,16 +8,11 @@ class Circle : public Shape
 {
 private:
     double _radius;
-    double _x;
-    double _y;
 
 public:
-    Circle(const double &radius);
+    Circle(prims::position pos, double radius);
 
-    Circle(const double &posX, const double &PosY, const double &radius);
-
-    //void draw_pos(std::ostream &file)const;
-    void draw(std::ostream &file) const;
+    void draw(std::ostream &file);
 };
 
 class Poly : public Shape
@@ -29,40 +22,42 @@ private:
     double _sideLength;
 
 public:
+    Poly(prims::position pos, int numSides, double sideLength);
 
-    Poly(const int &numSides, const double &sideLength);
-
-    void draw(std::ostream &file) const;
+    void draw(std::ostream &file);
 };
 
 
 class Square: public Poly
 {
 public:
-
-Square(const double &length): Poly(4,length){}
-
+    Square(prims::position pos, double length)
+        : Poly(pos, 4, length) { }
 };
+
 
 class Triangle: public Poly
 {
 public: 
-
-Triangle(const double &length): Poly(3, length){}
-
+    Triangle(prims::position pos, double length)
+        : Poly(pos, 3, length) { }
 };
+
+
+class Rectangle: public Shape {
+public: 
+    Rectangle(prims::position pos, double width, double height)
+        : Shape(pos, {width, height}) { }
+
+    void draw(std::ostream &file);
+};
+
 
 class Spacer: public Shape
 {
-
-private: 
-double _height;
-double _width;
-
 public: 
+    Spacer(prims::position pos, double width, double height)
+        : Shape(pos, {width, height}) { }
 
-Spacer(const double &height, const double &width): _height(height), _width(width){};
-
-void draw(std::ostream &file)const;
-
+    void draw(std::ostream &file);
 };
