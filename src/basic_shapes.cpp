@@ -18,7 +18,7 @@ void Circle::draw(std::ostream &file) {
     prims::position p = this->get_position();
 
     out <<"gsave\nnewpath\n"
-        << p.x << " "<< p.y << " " << _radius << " 0 360 arc \nstroke\ngrestore\n";
+        << p.x << " "<< p.y << " " << _radius << " 0 360 arc \nstroke\ngrestore\nshowpage";
     
     file << out.rdbuf();
 }
@@ -36,7 +36,7 @@ void Poly::draw(std::ostream &file){
          << " /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate "
             "-90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 "
             "S div add def } repeat\n"
-         << "closepath\nstroke\ngrestore\n";
+         << "closepath\nstroke\ngrestore\nshowpage";
 
     file << out.rdbuf();
 }
@@ -56,7 +56,7 @@ void Rect::draw(std::ostream &file){
     out<< p.x << " " << p.y << " moveto\n" << "gsave\nnewpath\n"
          << "-" << _width / 2.0 << " -" << _height / 2.0 << " "
          <<  _width << " " << _height
-         << " rectstroke \nstroke\ngrestore\n";
+         << " rectstroke \nstroke\ngrestore\nshowpage";
   file << out.rdbuf();
 
 }
