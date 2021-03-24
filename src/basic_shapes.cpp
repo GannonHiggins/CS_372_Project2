@@ -30,22 +30,18 @@ Poly::Poly(prims::position pos, int numSides, double sideLength)
 void Poly::draw(std::ostream &file){
    
    stringstream out;
+    prims::position p = this->get_position();
 
-    out << "gsave\nnewpath\n"
-         << "/S " << _numSides << " def /H " << this->get_boundingBox().height / 2 << " \ndef"
-         << " /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate "
-            "-90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 "
-            "S div add def } repeat\n"
-         << "closepath\nstroke\ngrestore\n";
+    out << p.x << " "<< p.y<< " translate\n/S " << _numSides << " def\n/H " 
+    << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
+    <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
+    <<"closepath\nstroke\nshowpage";
 
     file << out.rdbuf();
 }
 
 Rect::Rect(prims::position pos, double width, double height)
-        : Shape(pos, {width, height}), _width(width), _height(height) { 
-            //_width = width;
-           //_height = height;
-        }
+        : Shape(pos, {width, height}), _width(width), _height(height) { }
 
 
 void Rect::draw(std::ostream &file){
