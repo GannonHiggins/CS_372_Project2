@@ -1,4 +1,5 @@
-#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_RUNNER
+//#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "../header/basic_shapes.hpp"
@@ -77,4 +78,11 @@ TEST_CASE("draw a rectangle."){
   REQUIRE(output.str() == "gsave\nnewpath\n300 300 moveto\n45 rotate\n0 100 rlineto\n"
   "50 0 rlineto\n0 -100 rlineto\n-50 0 rlineto\nclosepath\nstroke\ngrestore\nshowpage");
 
+}
+
+
+int main(){
+
+
+  return 0;
 }
