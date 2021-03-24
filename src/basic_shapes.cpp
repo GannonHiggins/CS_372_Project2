@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <cmath>
+#include <vector>
 
 using std::string;
 using std::stringstream;
@@ -27,12 +28,16 @@ Poly::Poly(prims::position pos, int numSides, double sideLength)
     : _numSides(numSides), _sideLength(sideLength), Shape(pos, compute_boundingBox(numSides, sideLength)) {}
 
 
+void Poly::rotate(double degrees){
+    _rotate = degrees;
+}
+
 void Poly::draw(std::ostream &file){
    
    stringstream out;
     prims::position p = this->get_position();
 
-    out << p.x << " "<< p.y<< " translate\n/S " << _numSides << " def\n/H " 
+    out << p.x << " "<< p.y<< " translate\n" << _rotate << " rotate\n/S " << _numSides << " def\n/H " 
     << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
     <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
     <<"closepath\nstroke\nshowpage";
@@ -84,11 +89,28 @@ static prims::bounding_box compute_boundingBox(int numSides, int sideLength)
     return ret_bb;
 }
 
+
+//takes value and adds it to the x or y value of the position fo a rectangle
 void Move(Rect a, bool verticale, double movedSpace){
+    prims::position p = a.get_position();
 
-       /* this should take the position of a Rectangle and add a number
-       to the x or y value of its position. thus changeing its position when printed*/
+    if(verticale == false){
+    p.x += movedSpace;
+    }
+    else{
+    p.y += movedSpace;
+    }
 
-       /* i could not get this to work for the life of me. 
-       Also if this could work on all shapes that would save a lot of time*/
+    a.set_position(p);
+
 };
+
+//should take a vector
+void layered(Rect a, Circle b, std::vector<Shape> vec){
+
+}
+
+// takes a values then scales the shape by that value
+void Scaled(double scaled,  Rect buf){
+
+}

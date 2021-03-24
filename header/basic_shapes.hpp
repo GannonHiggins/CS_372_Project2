@@ -20,9 +20,12 @@ class Poly : public Shape
 private:
     int _numSides;
     double _sideLength;
+    double _rotate = 0;
 
 public:
     Poly(prims::position pos, int numSides, double sideLength);
+    
+    void rotate(double degrees);
 
     void draw(std::ostream &file);
 };
@@ -50,7 +53,7 @@ private:
     double _height;
 public: 
 
-  Rect(prims::position pos, double width, double height);
+    Rect(prims::position pos, double width, double height);
 
     void draw(std::ostream &file);
 };

@@ -10,11 +10,16 @@ class ShapeContainer
 {
 private:
     prims::position _pos;
-    //std::array<Shape> _shapes;
-public:
-    ShapeContainer(prims::position pos );
+    std::vector<Shape> _shapes;
 
-    void move(Rect a, bool verticale, double movedSpace);
+public:
+    ShapeContainer(prims::position pos);
+
+    //void move(Shape a, bool verticale, double movedSpace);
+
+    //void layered(Shape a, std::vector<Shape> vec);
+
+   // void Scaled(double x, double y, Shape buf);  
 
     ~ShapeContainer() = default;
 };
