@@ -12,16 +12,16 @@ static prims::bounding_box compute_boundingBox(int numSides, int numLength);
 Circle::Circle(prims::position pos, double radius) 
     : _radius(radius), Shape(pos, {radius * 2, radius * 2}) { }
 
-void Circle::draw(std::ostream &file) {
+void Circle::draw(std::string file) {
     stringstream out;
     std::ofstream of;
 
     prims::position p = this->get_position();
-
-    out <<"gsave\nnewpath\n"
+    of.open(file);
+    of <<"gsave\nnewpath\n"
         << p.x << " "<< p.y << " " << _radius << " 0 360 arc \nstroke\ngrestore\nshowpage";
     
-    file << out.rdbuf();
+    of.close();
 }
 
 Poly::Poly(prims::position pos, int numSides, double sideLength)
@@ -39,11 +39,10 @@ void Poly::rotate(double degrees){
     _rotatation = degrees;
 }
 
-void Poly::draw(std::ostream &file){
-   
-   stringstream out;
+void Poly::draw(std::string file){
+
    std::ofstream output;
-   output.open("test.ps");
+   output.open(file);
     prims::position p = this->get_position();
 
     if (_numSides < 5)
@@ -55,12 +54,8 @@ void Poly::draw(std::ostream &file){
     <<"closepath\nstroke\ngrestore\nshowpage";
     output.close();
 
-    out<<"gsave\n"<<  p.x << " "<< p.y<< " translate\n" << _rotatation << " rotate\n/S " << _numSides << " def\n/H " 
-    << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
-    <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
-    <<"closepath\nstroke\ngrestore\nshowpage";
-   
-    file << out.rdbuf();
+  
+
 }
 
 Rect::Rect(prims::position pos, double width, double height)
@@ -71,31 +66,26 @@ void Rect::rotate(double rotation){
     _rotation = rotation;
 }
 
-void Rect::draw(std::ostream &file){
-    stringstream out;
+void Rect::draw(std::string file){
     prims::position p = this->get_position();
     std::ofstream output;
-
-   out<< "gsave\nnewpath\n"<< p.x << " "<< p.y << " moveto\n" << _rotation << " rotate\n0 "<< _height << " rlineto\n"
-   <<_width << " 0 rlineto\n"<< "0 -" << _height << " rlineto\n" << "-" << _width << " 0 rlineto\nclosepath\nstroke\n" <<
-   "grestore\nshowpage";
-
-    output.open("test2.ps");
+    output.open(file);
 
     output<< "gsave\nnewpath\n"<< p.x << " "<< p.y << " moveto\n" << _rotation << " rotate\n0 "<< _height << " rlineto\n"
    <<_width << " 0 rlineto\n"<< "0 -" << _height << " rlineto\n" << "-" << _width << " 0 rlineto\nclosepath\nstroke\n" <<
    "grestore\nshowpage";
     output.close();
 
-    file << out.rdbuf();
-
 }
 
 
-void Spacer::draw(std::ostream &file) {
-    stringstream out;
-    out<<"";
-    file << out.rdbuf();
+
+
+void Spacer::draw(std::string file) {
+    std::ofstream of;
+    of.open(file);
+    of<<"";
+    of.close();
 }
 
 

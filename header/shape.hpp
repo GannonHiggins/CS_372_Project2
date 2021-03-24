@@ -19,6 +19,6 @@ public:
 
     Shape(prims::position pos, prims::bounding_box bb);
 
-    virtual void draw(std::ostream &file) = 0;
+    virtual void draw(std::string file)=0;
     virtual ~Shape() = default;
 };

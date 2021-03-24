@@ -12,7 +12,7 @@ private:
 public:
     Circle(prims::position pos, double radius);
 
-    void draw(std::ostream &file);
+    void draw(std::string file);
 };
 
 class Poly : public Shape
@@ -27,7 +27,7 @@ public:
     
     void rotate(double degrees);
 
-    void draw(std::ostream &file);
+   void draw(std::string file);
 };
 
 
@@ -58,7 +58,7 @@ public:
 
     void rotate(double rotation);
 
-    void draw(std::ostream &file);
+    void draw(std::string file);;
 };
 
 
@@ -68,7 +68,8 @@ public:
     Spacer(prims::position pos, double width, double height)
         : Shape(pos, {width, height}) { }
 
-    void draw(std::ostream &file);
+    void draw(std::string file);
+
 };
 
 void Move(Rect a, bool verticle, double movedSpace);

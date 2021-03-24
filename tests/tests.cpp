@@ -14,7 +14,7 @@ TEST_CASE("draw a circle"){
     SECTION("draw a Circle at 0,0."){
 
       Circle circle({0, 0}, 120);
-      circle.draw(output);
+      //circle.draw(output);
 
       REQUIRE(output.str() == "gsave\nnewpath\n0 0 120 0 360 arc \nstroke\ngrestore\nshowpage");
     }
@@ -25,7 +25,7 @@ TEST_CASE("draw a circle"){
     SECTION("draw a circle at 4,5 different position."){
 
       Circle circle1({4.0, 5.0}, 120);
-      circle1.draw(output);
+//      circle1.draw(output);
 
       REQUIRE(output.str() == "gsave\nnewpath\n4 5 120 0 360 arc \nstroke\ngrestore\nshowpage");
     }
@@ -36,7 +36,7 @@ TEST_CASE("Draw a polygon.") {
 
     Poly poly({50, 50}, 5, 200);
     poly.rotate(45);
-    poly.draw(output);
+//    poly.draw(output);
 
     REQUIRE(output.str() =="gsave\n50 50 translate\n45 rotate\n/S 5 def\n/H "
     "153.884 def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
@@ -49,7 +49,7 @@ TEST_CASE("draw a Square."){
     std::ostringstream output;
 
     Square square({300, 300}, 120);
-    square.draw(output);
+//    square.draw(output);
 
 
     REQUIRE(output.str() == "gsave\n300 300 translate\n90 rotate\n/S 4 def\n/H "
@@ -61,7 +61,7 @@ TEST_CASE("draw a Square."){
 TEST_CASE("draw a Triangle."){
     std::ostringstream output;
     Triangle triangle({300, 300}, 120);
-    triangle.draw(output);
+//    triangle.draw(output);
 
     REQUIRE(output.str() == "gsave\n300 300 translate\n15 rotate\n/S 3 def\n/H "
     "51.9615 def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
@@ -74,7 +74,7 @@ TEST_CASE("draw a rectangle."){
   std::ostringstream output;
   Rect rect({300,300},50,100);
   rect.rotate(45);
-  rect.draw(output);
+//  rect.draw(output);
   REQUIRE(output.str() == "gsave\nnewpath\n300 300 moveto\n45 rotate\n0 100 rlineto\n"
   "50 0 rlineto\n0 -100 rlineto\n-50 0 rlineto\nclosepath\nstroke\ngrestore\nshowpage");
 
@@ -83,6 +83,9 @@ TEST_CASE("draw a rectangle."){
 
 int main(){
 
+Rect rect1({300,300},50,100);
+  rect1.rotate(45);
+  rect1.draw("rect.ps");
 
   return 0;
 }
