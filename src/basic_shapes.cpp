@@ -25,7 +25,14 @@ void Circle::draw(std::ostream &file) {
 }
 
 Poly::Poly(prims::position pos, int numSides, double sideLength)
-    : _numSides(numSides), _sideLength(sideLength), Shape(pos, compute_boundingBox(numSides, sideLength)) {}
+    : _numSides(numSides), _sideLength(sideLength), Shape(pos, compute_boundingBox(numSides, sideLength)) {
+        if(numSides == 4){
+            _rotatation+=45;
+        }
+        else if(numSides == 3){
+            _rotatation-=30;
+    }
+ }
 
 
 void Poly::rotate(double degrees){

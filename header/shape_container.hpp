@@ -15,11 +15,5 @@ private:
 public:
     ShapeContainer(prims::position pos);
 
-    //void move(Shape a, bool verticale, double movedSpace);
-
-    //void layered(Shape a, std::vector<Shape> vec);
-
-   // void Scaled(double x, double y, Shape buf);  
-
     ~ShapeContainer() = default;
 };
