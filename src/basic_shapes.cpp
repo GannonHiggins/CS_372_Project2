@@ -29,7 +29,7 @@ Poly::Poly(prims::position pos, int numSides, double sideLength)
 
 
 void Poly::rotate(double degrees){
-    _rotate = degrees;
+    _rotatation = degrees;
 }
 
 void Poly::draw(std::ostream &file){
@@ -37,7 +37,10 @@ void Poly::draw(std::ostream &file){
    stringstream out;
     prims::position p = this->get_position();
 
-    out << p.x << " "<< p.y<< " translate\n" << _rotate << " rotate\n/S " << _numSides << " def\n/H " 
+    if (_numSides < 5)
+        _rotatation += 45;
+
+    out << p.x << " "<< p.y<< " translate\n" << _rotatation << " rotate\n/S " << _numSides << " def\n/H " 
     << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
     <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
     <<"closepath\nstroke\nshowpage";
@@ -69,6 +72,7 @@ void Spacer::draw(std::ostream &file) {
     file << out.rdbuf();
 }
 
+
 static prims::bounding_box compute_boundingBox(int numSides, int sideLength)
 {
     const double PI = 3.14159265358979323846;
@@ -88,4 +92,3 @@ static prims::bounding_box compute_boundingBox(int numSides, int sideLength)
     }
     return ret_bb;
 }
-

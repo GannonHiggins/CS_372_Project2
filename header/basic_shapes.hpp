@@ -20,7 +20,7 @@ class Poly : public Shape
 private:
     int _numSides;
     double _sideLength;
-    double _rotate = 0;
+    double _rotatation = 0;
 
 public:
     Poly(prims::position pos, int numSides, double sideLength);
