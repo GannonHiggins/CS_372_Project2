@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_RUNNER
+#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #include "../header/basic_shapes.hpp"
@@ -68,9 +68,10 @@ TEST_CASE("draw a Triangle."){
 
 }
 
-int main()
-{
-  
+TEST_CASE("draw a rectangle."){
+  std::ostringstream output;
+  Rect rect({10,10},50,100);
+  rect.draw(output);
 
-  return 0;
+  REQUIRE(output.str() == "10 10 moveto\ngsave\nnewpath\n-25 -50 50 100 rectstroke \nstroke\ngrestore\n");
 }

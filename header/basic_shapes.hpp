@@ -44,10 +44,13 @@ public:
 };
 
 
-class Rectangle: public Shape {
+class Rect: public Shape {
+private:
+    double _width;
+    double _height;
 public: 
-    Rectangle(prims::position pos, double width, double height)
-        : Shape(pos, {width, height}) { }
+
+  Rect(prims::position pos, double width, double height);
 
     void draw(std::ostream &file);
 };

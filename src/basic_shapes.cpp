@@ -41,6 +41,27 @@ void Poly::draw(std::ostream &file){
     file << out.rdbuf();
 }
 
+Rect::Rect(prims::position pos, double width, double height)
+        : Shape(pos, {width, height}), _width(width), _height(height) { 
+            //_width = width;
+           //_height = height;
+        }
+
+
+void Rect::draw(std::ostream &file){
+    stringstream out;
+    
+    prims::position p = this->get_position();
+
+    out<< p.x << " " << p.y << " moveto\n" << "gsave\nnewpath\n"
+         << "-" << _width / 2.0 << " -" << _height / 2.0 << " "
+         <<  _width << " " << _height
+         << " rectstroke \nstroke\ngrestore\n";
+  file << out.rdbuf();
+
+}
+
+
 void Spacer::draw(std::ostream &file) {
     stringstream out;
     out<<"";
