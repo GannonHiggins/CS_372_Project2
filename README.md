@@ -37,20 +37,20 @@ A spacer is not visible on the page
 #### A Rotated is a shape
 A rotated takes a shape and a rotation angle which is either 90, 180, or 270 degrees.
 
-### A Scaled is a shape
+#### A Scaled is a shape
 A scaled takes a shape, a horizontal scaling factor, and a vertical scaling factor. Creates a shape scaled by the given scaling factors.
 
-### A Layered is a shape
+#### A Layered is a shape
 A layered takes a collection of shapes and creates a new shape consisting of all the shapes drawn with their bounding boxes centered on the current point.
 
-### A Vertical is a shape
+#### A Vertical is a shape
 A vertical takes an ordered collection of shapes and creates a shape structured as follows:
 * shape i+1 is above shape i
 * all shapes are vertically centered by their bouding boxes
 * the bounding box has width equal to the maximum component shape's width
 * the bounding box has height equal to the sum of the component shape's heights
 
-### A Horizontal is a shape
+#### A Horizontal is a shape
 A horizontal takes an ordered collection of shapes and creates a shape structured as follows:
 * shape i+1 is right of shape i
 * all shapes are horizontally centered by their bouding boxes
