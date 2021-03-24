@@ -4,6 +4,10 @@
         "iosfwd": "cpp",
         "bitset": "cpp",
         "fstream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "optional": "cpp",
+        "future": "cpp",
+        "*.tcc": "cpp"
     }
 }

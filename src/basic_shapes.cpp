@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <cmath>
+#include <vector>
 
 using std::string;
 using std::stringstream;
@@ -27,25 +28,34 @@ Poly::Poly(prims::position pos, int numSides, double sideLength)
     : _numSides(numSides), _sideLength(sideLength), Shape(pos, compute_boundingBox(numSides, sideLength)) {}
 
 
+void Poly::rotate(double degrees){
+    _rotate = degrees;
+}
+
 void Poly::draw(std::ostream &file){
    
    stringstream out;
+    prims::position p = this->get_position();
 
+<<<<<<< HEAD
     out << "gsave\nnewpath\n"
          << "/S " << _numSides << " def /H " << this->get_boundingBox().height / 2 << " \ndef"
          << " /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate "
             "-90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 "
             "S div add def } repeat\n"
          << "closepath\nstroke\ngrestore\nshowpage";
+=======
+    out << p.x << " "<< p.y<< " translate\n" << _rotate << " rotate\n/S " << _numSides << " def\n/H " 
+    << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
+    <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
+    <<"closepath\nstroke\nshowpage";
+>>>>>>> config_B
 
     file << out.rdbuf();
 }
 
 Rect::Rect(prims::position pos, double width, double height)
-        : Shape(pos, {width, height}), _width(width), _height(height) { 
-            //_width = width;
-           //_height = height;
-        }
+        : Shape(pos, {width, height}), _width(width), _height(height) { }
 
 
 void Rect::draw(std::ostream &file){
@@ -87,3 +97,32 @@ static prims::bounding_box compute_boundingBox(int numSides, int sideLength)
     }
     return ret_bb;
 }
+<<<<<<< HEAD
+=======
+
+
+//takes value and adds it to the x or y value of the position fo a rectangle
+void Move(Rect a, bool verticale, double movedSpace){
+    prims::position p = a.get_position();
+
+    if(verticale == false){
+    p.x += movedSpace;
+    }
+    else{
+    p.y += movedSpace;
+    }
+
+    a.set_position(p);
+
+};
+
+//should take a vector
+void layered(Rect a, Circle b, std::vector<Shape> vec){
+
+}
+
+// takes a values then scales the shape by that value
+void Scaled(double scaled,  Rect buf){
+
+}
+>>>>>>> config_B
