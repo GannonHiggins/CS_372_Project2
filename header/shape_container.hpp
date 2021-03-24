@@ -14,18 +14,7 @@ private:
 public:
     ShapeContainer(prims::position pos );
 
-//this should move a Rectangle left x amount of spaces
-    void Move(Rect a, bool verticale, double movedSpace){
-        if(verticale == false){
-       a.get_position();
-       _pos.x = _pos.x + movedSpace;
-        }
-        else{
-            _pos.y = _pos.y + movedSpace;
-        }
-    };
+    void move(Rect a, bool verticale, double movedSpace);
 
-    ~ShapeContainer();
-
-    void rotate();
+    ~ShapeContainer() = default;
 };

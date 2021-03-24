@@ -4,6 +4,7 @@
 #include "../header/basic_shapes.hpp"
 #include "../header/shape.hpp"
 #include "../header/primatives.hpp"
+#include "../header/shape_container.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -72,5 +73,10 @@ TEST_CASE("draw a rectangle."){
   Rect rect({10,10},50,100);
   rect.draw(output);
 
+  std::ostringstream out1;
+  Rect rect1({10,10}, 50,100);
+  Move(rect1, false,50);
+  rect.draw(out1);
   REQUIRE(output.str() == "10 10 moveto\ngsave\nnewpath\n-25 -50 50 100 rectstroke \nstroke\ngrestore\n");
+  REQUIRE(out1.str() == "60 10 moveto\ngsave\nnewpath\n-25 -50 50 100 rectstroke \nstroke\ngrestore\n");
 }

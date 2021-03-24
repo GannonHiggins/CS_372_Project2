@@ -83,3 +83,12 @@ static prims::bounding_box compute_boundingBox(int numSides, int sideLength)
     }
     return ret_bb;
 }
+
+Rect Move(Rect a, bool verticale, double movedSpace){
+
+       /* this should take the position of a Rectangle and add a number
+       to the x or y value of its position. thus changeing its position when printed*/
+
+       /* i could not get this to work for the life of me. 
+       Also if this could work on all shapes that would save a lot of time*/
+};
