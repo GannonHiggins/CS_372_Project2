@@ -1,0 +1,17 @@
+gsave
+0 0 translate
+45 rotate
+/S 3 def
+/H 51.9615 def
+newpath
+H 0 moveto
+1 1 S 1 sub
+{
+ /i exch def
+ 360 S div i mul cos H mul
+ 360 S div i mul sin H mul lineto
+} for
+closepath
+stroke
+grestore
+showpage

@@ -35,16 +35,24 @@ void Poly::rotate(double degrees){
 void Poly::draw(std::ostream &file){
    
    stringstream out;
+   std::ofstream output;
+   output.open("test.ps");
     prims::position p = this->get_position();
 
     if (_numSides < 5)
         _rotatation += 45;
 
-    out << p.x << " "<< p.y<< " translate\n" << _rotatation << " rotate\n/S " << _numSides << " def\n/H " 
+    output <<"gsave\n"<< p.x << " "<< p.y<< " translate\n" << _rotatation << " rotate\n/S " << _numSides << " def\n/H " 
     << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
     <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
-    <<"closepath\nstroke\nshowpage";
+    <<"closepath\nstroke\ngrestore\nshowpage";
+    output.close();
 
+    out<<"gsave\n"<<  p.x << " "<< p.y<< " translate\n" << _rotatation << " rotate\n/S " << _numSides << " def\n/H " 
+    << this->get_boundingBox().height/2 <<" def\nnewpath\nH 0 moveto\n1 1 S 1 sub\n"
+    <<"{\n /i exch def\n 360 S div i mul cos H mul\n 360 S div i mul sin H mul lineto\n} for\n"
+    <<"closepath\nstroke\ngrestore\nshowpage";
+   
     file << out.rdbuf();
 }
 
@@ -52,16 +60,27 @@ Rect::Rect(prims::position pos, double width, double height)
         : Shape(pos, {width, height}), _width(width), _height(height) { }
 
 
+void Rect::rotate(double rotation){
+    _rotation = rotation;
+}
+
 void Rect::draw(std::ostream &file){
     stringstream out;
-    
     prims::position p = this->get_position();
+    std::ofstream output;
 
-    out<< p.x << " " << p.y << " moveto\n" << "gsave\nnewpath\n"
-         << "-" << _width / 2.0 << " -" << _height / 2.0 << " "
-         <<  _width << " " << _height
-         << " rectstroke \nstroke\ngrestore\nshowpage";
-  file << out.rdbuf();
+   out<< "gsave\nnewpath\n"<< p.x << " "<< p.y << " moveto\n" << _rotation << " rotate\n0 "<< _height << " rlineto\n"
+   <<_width << " 0 rlineto\n"<< "0 -" << _height << " rlineto\n" << "-" << _width << " 0 rlineto\nclosepath\nstroke\n" <<
+   "grestore\nshowpage";
+
+    output.open("test2.ps");
+
+    output<< "gsave\nnewpath\n"<< p.x << " "<< p.y << " moveto\n" << _rotation << " rotate\n0 "<< _height << " rlineto\n"
+   <<_width << " 0 rlineto\n"<< "0 -" << _height << " rlineto\n" << "-" << _width << " 0 rlineto\nclosepath\nstroke\n" <<
+   "grestore\nshowpage";
+    output.close();
+
+    file << out.rdbuf();
 
 }
 

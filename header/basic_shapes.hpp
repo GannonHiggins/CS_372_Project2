@@ -51,9 +51,12 @@ class Rect: public Shape {
 private:
     double _width;
     double _height;
+    double _rotation; 
 public: 
 
     Rect(prims::position pos, double width, double height);
+
+    void rotate(double rotation);
 
     void draw(std::ostream &file);
 };
