@@ -15,7 +15,7 @@ TEST_CASE("draw a circle"){
       Circle circle({0, 0}, 120);
       circle.draw(output);
 
-      REQUIRE(output.str() == "gsave\nnewpath\n0 0 120 0 360 arc \nstroke\ngrestore\n");
+      REQUIRE(output.str() == "gsave\nnewpath\n0 0 120 0 360 arc \nstroke\ngrestore\nshowpage");
     }
 
     // Reset output stringstream 
@@ -26,7 +26,7 @@ TEST_CASE("draw a circle"){
       Circle circle1({4.0, 5.0}, 120);
       circle1.draw(output);
 
-      REQUIRE(output.str() == "gsave\nnewpath\n4 5 120 0 360 arc \nstroke\ngrestore\n");
+      REQUIRE(output.str() == "gsave\nnewpath\n4 5 120 0 360 arc \nstroke\ngrestore\nshowpage");
     }
 }
 
@@ -40,7 +40,7 @@ TEST_CASE("Draw a polygon.") {
           "gsave\nnewpath\n/S 5 def /H 153.884 \ndef /A 360 S div "
           "def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 "
           "moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } "
-          "repeat\nclosepath\nstroke\ngrestore\n");
+          "repeat\nclosepath\nstroke\ngrestore\nshowpage");
 }
 
 TEST_CASE("draw a Square."){
@@ -53,7 +53,7 @@ TEST_CASE("draw a Square."){
     REQUIRE(output.str() == "gsave\nnewpath\n/S 4 def /H 100 \ndef /A 360 S div "
           "def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 "
           "moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } "
-          "repeat\nclosepath\nstroke\ngrestore\n");
+          "repeat\nclosepath\nstroke\ngrestore\nshowpage");
 }
 
 TEST_CASE("draw a Triangle."){
@@ -64,7 +64,7 @@ TEST_CASE("draw a Triangle."){
     REQUIRE(output.str() == "gsave\nnewpath\n/S 3 def /H 51.9615 \ndef /A 360 S div "
           "def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 "
           "moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } "
-          "repeat\nclosepath\nstroke\ngrestore\n");
+          "repeat\nclosepath\nstroke\ngrestore\nshowpage");
 
 }
 
@@ -73,5 +73,5 @@ TEST_CASE("draw a rectangle."){
   Rect rect({10,10},50,100);
   rect.draw(output);
 
-  REQUIRE(output.str() == "10 10 moveto\ngsave\nnewpath\n-25 -50 50 100 rectstroke \nstroke\ngrestore\n");
+  REQUIRE(output.str() == "10 10 moveto\ngsave\nnewpath\n-25 -50 50 100 rectstroke \nstroke\ngrestore\nshowpage");
 }
