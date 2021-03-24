@@ -65,4 +65,4 @@ public:
     void draw(std::ostream &file);
 };
 
-Rect Move(Rect a, bool verticle, double movedSpace);
+void Move(Rect a, bool verticle, double movedSpace);
