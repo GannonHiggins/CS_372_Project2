@@ -57,3 +57,4 @@ A horizontal takes an ordered collection of shapes and creates a shape structure
 * the bounding box has height equal to the maximum component shape's height
 * the bounding box has width equal to the sum of the component shape's widths
 
+To run the program within linux, runt he command: g++ tests/tests.cpp src/basic_shapes.cpp src/Shape.cpp
